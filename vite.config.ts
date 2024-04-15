@@ -8,8 +8,9 @@ export default defineConfig({
     port: 7070,
     proxy: {
       '/api': {
-        target: 'http://localhost:8080',
-        changeOrigin: true
+        target: 'http://localhost:7011',
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/api/, '') // 使用正则表达式去掉 URL 中的 /api
       }
     }
   }
