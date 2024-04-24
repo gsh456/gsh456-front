@@ -2,23 +2,19 @@
     <div class="login-body">
         <div class="login-panel">
             <div class="login-title">用户登录</div>
-            <el-form :model="formData" :rules="rules" ref="formDataRef">
-                 <el-form-item prop="username">
+            <el-form :model="formData" :rules="rules" ref="formDataRef" label-width="auto">
+                 <el-form-item prop="username" style="width: 100px">
                     <el-input placeholder="请输入账号" v-model="formData.username" size="large" type="text">
                         <template #prefix>
-                            <el-icon>
-                                <User />
-                            </el-icon>
+                          <el-icon><User /></el-icon>
                         </template>
                     </el-input>
                 </el-form-item>
-                <el-form-item prop="password">
+                <el-form-item prop="password" >
                     <el-input placeholder="请输入密码" v-model="formData.password" size="large" type="password"
                         @keyup.enter.native="login()">
                         <template #prefix>
-                            <el-icon>
-                                <Lock />
-                            </el-icon>
+                          <el-icon><Lock /></el-icon>
                         </template>
                     </el-input>
                 </el-form-item>
@@ -39,8 +35,8 @@
     </div>
 </template>
 
-<script setup>
-import { ref, reactive, } from 'vue'
+<script setup lang="ts">
+import { ref, reactive } from 'vue'
 import { ElMessage } from 'element-plus';
 import request from '../utils/request.ts';		//这里使用自行封装的axios，下文已给出，照搬后修改运行端口即可
 import { useRouter } from 'vue-router';
@@ -82,7 +78,7 @@ const login = () => {
                 message: '登录成功',
                 type: 'success',
             })
-            
+
             let tokenObj = { token: " isLogin", startTime: new Date().getTime() };
             window.localStorage.setItem("isLogin", JSON.stringify(tokenObj));
             localStorage.setItem("username", JSON.parse(JSON.stringify(formData.username)));
@@ -100,7 +96,7 @@ const login = () => {
 
 <style lang="scss" scoped >
 .login-body {
-    background: url("../assets/Default.jpg") no-repeat center center;
+    background: url("../assets/login-bg1.jpg") no-repeat center center;
     height: 100%;
     width: 100%;
     background-size: cover;
